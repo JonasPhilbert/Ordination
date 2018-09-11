@@ -1,6 +1,7 @@
 package ordination;
 
 import java.time.*;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 
 public class DagligFast extends Ordination {
@@ -17,8 +18,16 @@ public class DagligFast extends Ordination {
 	
 	@Override
 	public double samletDosis() {
-		// TODO Auto-generated method stub
-		return 0;
+		double result = 0d;
+		for (int i = 0; i < doser.length; i++) {
+			if (doser[i] != null) {
+				result += doser[i].getAntal();	
+			}
+		}
+		
+		result *= ChronoUnit.DAYS.between(getStartDen(), getSlutDen());
+		
+		return result;
 	}
 
 	@Override
