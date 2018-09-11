@@ -7,12 +7,12 @@ import java.util.ArrayList;
 public class PN extends Ordination {
 
     private ArrayList<LocalDate> doserGivet = new ArrayList<>();
-
-    public PN(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
-        super(startDen, slutDen, laegemiddel);
-    }
-
     private double antalEnheder;
+
+    public PN(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel, double antalEnheder) {
+        super(startDen, slutDen, laegemiddel);
+        this.antalEnheder = antalEnheder;
+    }
 
     /**
      * Registrerer at der er givet en dosis paa dagen givesDen Returnerer true hvis
@@ -35,14 +35,12 @@ public class PN extends Ordination {
 
     @Override
     public double doegnDosis() {
-        // TODO
-        return 0.0;
+        return samletDosis() / ChronoUnit.DAYS.between(getStartDen(), getSlutDen());
     }
 
     @Override
     public double samletDosis() {
-        // TODO
-        return 0.0;
+        return getAntalGangeGivet() * antalEnheder;
     }
 
     /**
@@ -51,8 +49,7 @@ public class PN extends Ordination {
      * @return
      */
     public int getAntalGangeGivet() {
-        // TODO
-        return -1;
+        return doserGivet.size();
     }
 
     public double getAntalEnheder() {
@@ -61,8 +58,7 @@ public class PN extends Ordination {
 
     @Override
     public String getType() {
-        // TODO Auto-generated method stub
-        return null;
+        return "PN";
     }
 
 }
