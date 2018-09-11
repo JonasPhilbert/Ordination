@@ -42,4 +42,10 @@ public class PN extends Ordination {
         return antalEnheder;
     }
 
+	@Override
+	public String getType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

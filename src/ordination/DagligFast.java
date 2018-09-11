@@ -4,6 +4,8 @@ import java.time.*;
 
 public class DagligFast extends Ordination {
 
+	private Dosis[] doser = new Dosis[4];
+	
 	@Override
 	public double samletDosis() {
 		// TODO Auto-generated method stub
@@ -21,5 +23,4 @@ public class DagligFast extends Ordination {
 		// TODO Auto-generated method stub
 		return null;
 	}
-    // TODO
 }
