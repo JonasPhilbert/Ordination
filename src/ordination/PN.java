@@ -4,7 +4,11 @@ import java.time.LocalDate;
 
 public class PN extends Ordination {
 
-    private double antalEnheder;
+    public PN(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
+		super(startDen, slutDen, laegemiddel);
+	}
+
+	private double antalEnheder;
 
     /**
      * Registrerer at der er givet en dosis paa dagen givesDen

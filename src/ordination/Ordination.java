@@ -14,7 +14,7 @@ public abstract class Ordination {
     public Ordination(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
     	this.startDen = startDen;
     	this.slutDen = slutDen;
-    	this.laegemiddel = laegemiddel;
+    	this.setLaegemiddel(laegemiddel);
     }
 
     public LocalDate getStartDen() {
@@ -55,4 +55,12 @@ public abstract class Ordination {
      * @return
      */
     public abstract String getType();
+
+	public Laegemiddel getLaegemiddel() {
+		return laegemiddel;
+	}
+
+	public void setLaegemiddel(Laegemiddel laegemiddel) {
+		this.laegemiddel = laegemiddel;
+	}
 }

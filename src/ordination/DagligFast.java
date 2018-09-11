@@ -4,6 +4,10 @@ import java.time.*;
 
 public class DagligFast extends Ordination {
 
+	public DagligFast(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
+		super(startDen, slutDen, laegemiddel);
+	}
+
 	private Dosis[] doser = new Dosis[4];
 	
 	@Override
