@@ -13,17 +13,17 @@ import storage.Storage;
 
 public class Controller {
     private Storage storage;
-    private static Controller service;
+    private static Controller controller;
 
     private Controller() {
         storage = new Storage();
     }
 
     public static Controller getService() {
-        if (service == null) {
-            service = new Controller();
+        if (controller == null) {
+            controller = new Controller();
         }
-        return service;
+        return controller;
     }
 
     public static Controller getTestService() {
@@ -39,13 +39,15 @@ public class Controller {
      */
     public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
             double antal) {
+        PN pn = new PN(startDen, slutDen, laegemiddel, antal);
         if (startDen.isAfter(slutDen)) {
             throw new IllegalArgumentException();
-        } else {
-            PN pn = new PN(startDen, slutDen, laegemiddel, antal);
-
+        } else if (startDen == null || slutDen == null || laegemiddel == null) {
+            return null;
         }
-        return null;
+        patient.addOrdination(pn);
+        return pn;
+
     }
 
     /**
@@ -55,8 +57,18 @@ public class Controller {
      */
     public DagligFast opretDagligFastOrdination(LocalDate startDen, LocalDate slutDen, Patient patient,
             Laegemiddel laegemiddel, double morgenAntal, double middagAntal, double aftenAntal, double natAntal) {
+        DagligFast df = new DagligFast(startDen, slutDen, laegemiddel);
+        if (startDen.isAfter(slutDen)) {
+            throw new IllegalArgumentException();
+        } else if (startDen == null || slutDen == null || laegemiddel == null) {
+            return null;
+        }
         // TODO
-        return null;
+        // mangler dosis tilføjelse
+        patient.addOrdination(df);
+
+        return df;
+
     }
 
     /**
@@ -79,7 +91,12 @@ public class Controller {
      * IllegalArgumentException Pre: ordination og dato er ikke null
      */
     public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
-        // TODO
+        if (ordination.getSlutDen().isAfter(dato) || ordination.getStartDen().isBefore(dato)) {
+            throw new IllegalArgumentException();
+        }
+        if (ordination != null || dato != null) {
+            ordination.givDosis(dato);
+        }
     }
 
     /**
