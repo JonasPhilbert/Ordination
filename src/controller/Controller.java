@@ -26,8 +26,6 @@ public class Controller {
         return service;
     }
 
-    // KOmmentar skal slettes
-
     public static Controller getTestService() {
         return new Controller();
     }
