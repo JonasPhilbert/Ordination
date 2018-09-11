@@ -4,6 +4,8 @@ import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 
+import gui.TypeOrdination;
+
 public class DagligFast extends Ordination {
 
 	private Dosis[] doser = new Dosis[4];
@@ -18,27 +20,24 @@ public class DagligFast extends Ordination {
 	
 	@Override
 	public double samletDosis() {
-		double result = 0d;
-		for (int i = 0; i < doser.length; i++) {
-			if (doser[i] != null) {
-				result += doser[i].getAntal();	
-			}
-		}
-		
-		result *= ChronoUnit.DAYS.between(getStartDen(), getSlutDen());
-		
-		return result;
+		return doegnDosis() * ChronoUnit.DAYS.between(getStartDen(), getSlutDen());
 	}
 
 	@Override
 	public double doegnDosis() {
-		// TODO Auto-generated method stub
-		return 0;
+		double sum = 0d;
+		for (int i = 0; i < doser.length; i++) {
+			if (doser[i] != null) {
+				sum += doser[i].getAntal();
+			}
+		}
+		
+		return sum;
 	}
 
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
+		// TODO What? Type what?
 		return null;
 	}
 }
