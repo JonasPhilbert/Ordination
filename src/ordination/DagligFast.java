@@ -4,8 +4,6 @@ import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 
-import gui.TypeOrdination;
-
 public class DagligFast extends Ordination {
 
 	private Dosis[] doser = new Dosis[4];
@@ -37,7 +35,6 @@ public class DagligFast extends Ordination {
 
 	@Override
 	public String getType() {
-		// TODO What? Type what?
-		return null;
+		return "FAST";
 	}
 }
