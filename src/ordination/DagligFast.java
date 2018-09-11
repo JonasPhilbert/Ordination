@@ -2,6 +2,24 @@ package ordination;
 
 import java.time.*;
 
-public class DagligFast {
+public class DagligFast extends Ordination {
+
+	@Override
+	public double samletDosis() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double doegnDosis() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
     // TODO
 }
