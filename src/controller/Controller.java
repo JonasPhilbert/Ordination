@@ -26,14 +26,16 @@ public class Controller {
         return service;
     }
 
+    // KOmmentar skal slettes
+
     public static Controller getTestService() {
         return new Controller();
     }
 
     /**
      * Hvis startDato er efter slutDato kastes en IllegalArgumentException og
-     * ordinationen oprettes ikke Pre: startDen, slutDen, patient og laegemiddel
-     * er ikke null
+     * ordinationen oprettes ikke Pre: startDen, slutDen, patient og laegemiddel er
+     * ikke null
      *
      * @return opretter og returnerer en PN ordination.
      */
@@ -56,9 +58,9 @@ public class Controller {
 
     /**
      * Opretter og returnerer en DagligSkæv ordination. Hvis startDato er efter
-     * slutDato kastes en IllegalArgumentException og ordinationen oprettes
-     * ikke. Hvis antallet af elementer i klokkeSlet og antalEnheder er
-     * forskellige kastes også en IllegalArgumentException.
+     * slutDato kastes en IllegalArgumentException og ordinationen oprettes ikke.
+     * Hvis antallet af elementer i klokkeSlet og antalEnheder er forskellige kastes
+     * også en IllegalArgumentException.
      *
      * Pre: startDen, slutDen, patient og laegemiddel er ikke null
      */
@@ -69,8 +71,8 @@ public class Controller {
     }
 
     /**
-     * En dato for hvornår ordinationen anvendes tilføjes ordinationen. Hvis
-     * datoen ikke er indenfor ordinationens gyldighedsperiode kastes en
+     * En dato for hvornår ordinationen anvendes tilføjes ordinationen. Hvis datoen
+     * ikke er indenfor ordinationens gyldighedsperiode kastes en
      * IllegalArgumentException Pre: ordination og dato er ikke null
      */
     public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
@@ -78,10 +80,9 @@ public class Controller {
     }
 
     /**
-     * Den anbefalede dosis for den pågældende patient (der skal tages hensyn
-     * til patientens vægt). Det er en forskellig enheds faktor der skal
-     * anvendes, og den er afhængig af patientens vægt. Pre: patient og
-     * lægemiddel er ikke null
+     * Den anbefalede dosis for den pågældende patient (der skal tages hensyn til
+     * patientens vægt). Det er en forskellig enheds faktor der skal anvendes, og
+     * den er afhængig af patientens vægt. Pre: patient og lægemiddel er ikke null
      */
     public double anbefaletDosisPrDoegn(Patient patient, Laegemiddel laegemiddel) {
         double result;
@@ -113,8 +114,7 @@ public class Controller {
     }
 
     /**
-     * Metode der kan bruges til at checke at en startDato ligger før en
-     * slutDato.
+     * Metode der kan bruges til at checke at en startDato ligger før en slutDato.
      *
      * @return true hvis startDato er før slutDato, false ellers.
      */
