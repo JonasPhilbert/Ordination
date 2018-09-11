@@ -6,20 +6,18 @@ import java.time.temporal.ChronoUnit;
 public abstract class Ordination {
     private LocalDate startDen;
     private LocalDate slutDen;
-
-    // TODO Link til Laegemiddel:
     private Laegemiddel laegemiddel;
-    
+
     // TODO constructor (med specifikation)
     public Ordination(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
-    	this.startDen = startDen;
-    	this.slutDen = slutDen;
-    	this.setLaegemiddel(laegemiddel);
+        this.startDen = startDen;
+        this.slutDen = slutDen;
+        setLaegemiddel(laegemiddel);
     }
 
     public LocalDate getStartDen() {
         return startDen;
-    }	
+    }
 
     public LocalDate getSlutDen() {
         return slutDen;
@@ -27,6 +25,7 @@ public abstract class Ordination {
 
     /**
      * Antal hele dage mellem startdato og slutdato. Begge dage inklusive.
+     *
      * @return antal dage ordinationen gælder for
      */
     public int antalDage() {
@@ -39,28 +38,33 @@ public abstract class Ordination {
     }
 
     /**
-     * Returnerer den totale dosis der er givet i den periode ordinationen er gyldig
+     * Returnerer den totale dosis der er givet i den periode ordinationen er
+     * gyldig
+     *
      * @return
      */
     public abstract double samletDosis();
 
     /**
-     * Returnerer den gennemsnitlige dosis givet pr dag i den periode ordinationen er gyldig
+     * Returnerer den gennemsnitlige dosis givet pr dag i den periode
+     * ordinationen er gyldig
+     *
      * @return
      */
     public abstract double doegnDosis();
 
     /**
      * Returnerer ordinationstypen som en String
+     *
      * @return
      */
     public abstract String getType();
 
-	public Laegemiddel getLaegemiddel() {
-		return laegemiddel;
-	}
+    public Laegemiddel getLaegemiddel() {
+        return laegemiddel;
+    }
 
-	public void setLaegemiddel(Laegemiddel laegemiddel) {
-		this.laegemiddel = laegemiddel;
-	}
+    public void setLaegemiddel(Laegemiddel laegemiddel) {
+        this.laegemiddel = laegemiddel;
+    }
 }

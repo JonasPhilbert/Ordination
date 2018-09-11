@@ -35,7 +35,9 @@ public class Patient {
         this.vaegt = vaegt;
     }
 
-    // TODO: Metoder (med specifikation) til at vedligeholde link til Ordination
+    public void addOrdination(Ordination o) {
+        ordinationer.add(o);
+    }
 
     @Override
     public String toString() {
@@ -43,7 +45,7 @@ public class Patient {
     }
 
     public ArrayList<Ordination> getOrdinationer() {
-        return ordinationer;
+        return new ArrayList<>(ordinationer);
     }
 
 }
