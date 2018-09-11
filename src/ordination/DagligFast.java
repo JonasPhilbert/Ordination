@@ -10,6 +10,8 @@ public class DagligFast extends Ordination {
 
 	private Dosis[] doser = new Dosis[4];
 	
+	
+	
 	@Override
 	public double samletDosis() {
 		// TODO Auto-generated method stub
