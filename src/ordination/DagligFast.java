@@ -1,6 +1,7 @@
 package ordination;
 
 import java.time.*;
+import java.util.Arrays;
 
 public class DagligFast extends Ordination {
 
@@ -10,6 +11,9 @@ public class DagligFast extends Ordination {
 		super(startDen, slutDen, laegemiddel);
 	}
 	
+	public Dosis[] getDoser(){
+		return Arrays.copyOf(doser, 4);
+	}
 	
 	@Override
 	public double samletDosis() {
