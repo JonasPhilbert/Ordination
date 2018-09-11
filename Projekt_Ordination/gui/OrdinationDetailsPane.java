@@ -2,6 +2,7 @@ package gui;
 
 import java.time.LocalDate;
 
+import controller.Controller;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -13,11 +14,9 @@ import ordination.DagligSkaev;
 import ordination.Dosis;
 import ordination.Ordination;
 import ordination.PN;
-import service.Service;
 
 public class OrdinationDetailsPane extends GridPane {
-    private TextField txtStarttid, txtSluttid, txtLaegemiddel, txtDoegndosis,
-        txtTotalDosis;
+    private TextField txtStarttid, txtSluttid, txtLaegemiddel, txtDoegndosis, txtTotalDosis;
     private TextField txtType = new TextField();
 
     // Daglig fast
@@ -36,10 +35,10 @@ public class OrdinationDetailsPane extends GridPane {
 
     private Label lblError = new Label();
 
-    private Service service;
+    private Controller controller;
 
     public OrdinationDetailsPane() {
-        service = Service.getService();
+        controller = Controller.getService();
         setHgap(20);
         setVgap(10);
         setGridLinesVisible(false);
@@ -91,7 +90,7 @@ public class OrdinationDetailsPane extends GridPane {
         datePicker.setMaxWidth(90);
 
         btnAnvend.setOnAction(event -> actionAnvend());
-        
+
         lblError.setTextFill(Color.RED);
         pnPane.add(lblError, 0, 8, 2, 1);
     }
@@ -100,19 +99,16 @@ public class OrdinationDetailsPane extends GridPane {
         lblError.setText("");
         LocalDate anvendtDato = datePicker.getValue();
         try {
-            service.ordinationPNAnvendt(pn, anvendtDato);
-        }
-        catch (IllegalArgumentException e) {
+            controller.ordinationPNAnvendt(pn, anvendtDato);
+        } catch (IllegalArgumentException e) {
             lblError.setText(e.getMessage());
             return;
         }
         txtAnvendt.setText(pn.getAntalGangeGivet() + " gange");
         txtDosis.setText(pn.getAntalEnheder() + "");
 
-        txtDoegndosis.setText(pn.doegnDosis() + " "
-            + pn.getLaegemiddel().getEnhed());
-        txtTotalDosis.setText(pn.samletDosis() + " "
-            + pn.getLaegemiddel().getEnhed());
+        txtDoegndosis.setText(pn.doegnDosis() + " " + pn.getLaegemiddel().getEnhed());
+        txtTotalDosis.setText(pn.samletDosis() + " " + pn.getLaegemiddel().getEnhed());
     }
 
     public void clear() {
