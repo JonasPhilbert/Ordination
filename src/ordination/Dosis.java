@@ -11,6 +11,12 @@ public class Dosis {
         this.tid = tid;
         this.antal = antal;
     }
+    
+    public Dosis(double antal) {
+    	super();
+    	this.tid = null;
+    	this.antal = antal;
+    }
 
     public double getAntal() {
         return antal;
