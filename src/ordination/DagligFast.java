@@ -16,9 +16,10 @@ public class DagligFast extends Ordination {
         return Arrays.copyOf(doser, 4);
     }
 
-    // opretter dosis
-    public Dosis createDosis(LocalTime tid, int antal) {
-        Dosis dosis = new Dosis(tid, antal);
+    // Opretter dosis
+    public Dosis createDosis(Dagstidspunkt dagstidspunkt, int antal) {
+        Dosis dosis = new Dosis(antal);
+        doser[dagstidspunkt.ordinal()] = dosis;
         return dosis;
     }
 
