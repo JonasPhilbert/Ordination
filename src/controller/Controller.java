@@ -40,14 +40,18 @@ public class Controller {
      */
     public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
             double antal) {
-        PN pn = new PN(startDen, slutDen, laegemiddel, antal);
-        controller.isTidAfter(startDen, slutDen);
-        if (startDen == null || slutDen == null || laegemiddel == null || patient == null) {
+    	
+    	// Argument check;
+    	if (startDen == null || slutDen == null || laegemiddel == null || patient == null) {
             return null;
         }
+    	
+        PN pn = new PN(startDen, slutDen, laegemiddel, antal);
+        controller.isTidAfter(startDen, slutDen);
+        
         patient.addOrdination(pn);
+        
         return pn;
-
     }
 
     /**
