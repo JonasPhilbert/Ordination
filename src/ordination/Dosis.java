@@ -8,8 +8,8 @@ public class Dosis {
 
     public Dosis(LocalTime tid, double antal) {
         super();
-        this.tid = tid;
-        this.antal = antal;
+        setTid(tid);
+        setAntal(antal);
     }
     
     public Dosis(double antal) {
