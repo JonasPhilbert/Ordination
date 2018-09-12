@@ -6,6 +6,7 @@ import java.util.List;
 
 import ordination.DagligFast;
 import ordination.DagligSkaev;
+import ordination.Dagstidspunkt;
 import ordination.Laegemiddel;
 import ordination.PN;
 import ordination.Patient;
@@ -63,8 +64,11 @@ public class Controller {
         } else if (startDen == null || slutDen == null || laegemiddel == null) {
             return null;
         }
-        // TODO
-        // mangler dosis tilføjelse
+        df.createDosis(Dagstidspunkt.MORGEN, morgenAntal);
+        df.createDosis(Dagstidspunkt.MIDDAG, middagAntal);
+        df.createDosis(Dagstidspunkt.AFTEN, aftenAntal);
+        df.createDosis(Dagstidspunkt.NAT, natAntal);
+        
         patient.addOrdination(df);
 
         return df;
