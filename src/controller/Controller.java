@@ -140,6 +140,7 @@ public class Controller {
                 result = patient.getVaegt() * laegemiddel.getEnhedPrKgPrDoegnNormal();
             }
         }
+        
         return result;
     }
 
