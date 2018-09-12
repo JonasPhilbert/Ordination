@@ -10,6 +10,8 @@ import ordination.Dosis;
 
 public class DosisTest {
 
+    /** Test af metoden setTid() i klassen Dosis */
+
     @Test
     public void TC1() {
         Dosis d = new Dosis(0);
