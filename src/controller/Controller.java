@@ -41,9 +41,8 @@ public class Controller {
     public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
             double antal) {
         PN pn = new PN(startDen, slutDen, laegemiddel, antal);
-        if (startDen.isAfter(slutDen)) {
-            throw new IllegalArgumentException();
-        } else if (startDen == null || slutDen == null || laegemiddel == null) {
+        controller.isTidAfter(startDen, slutDen);
+        if (startDen == null || slutDen == null || laegemiddel == null) {
             return null;
         }
         patient.addOrdination(pn);
@@ -59,9 +58,8 @@ public class Controller {
     public DagligFast opretDagligFastOrdination(LocalDate startDen, LocalDate slutDen, Patient patient,
             Laegemiddel laegemiddel, double morgenAntal, double middagAntal, double aftenAntal, double natAntal) {
         DagligFast df = new DagligFast(startDen, slutDen, laegemiddel);
-        if (startDen.isAfter(slutDen)) {
-            throw new IllegalArgumentException();
-        } else if (startDen == null || slutDen == null || laegemiddel == null) {
+        controller.isTidAfter(startDen, slutDen);
+        if (startDen == null || slutDen == null || laegemiddel == null) {
             return null;
         }
         df.createDosis(Dagstidspunkt.MORGEN, morgenAntal);
@@ -85,6 +83,8 @@ public class Controller {
      */
     public DagligSkaev opretDagligSkaevOrdination(LocalDate startDen, LocalDate slutDen, Patient patient,
             Laegemiddel laegemiddel, LocalTime[] klokkeSlet, double[] antalEnheder) {
+        controller.isTidAfter(startDen, slutDen);
+
         // TODO
         return null;
     }
@@ -94,12 +94,22 @@ public class Controller {
      * datoen ikke er indenfor ordinationens gyldighedsperiode kastes en
      * IllegalArgumentException Pre: ordination og dato er ikke null
      */
+
     public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
         if (ordination.getSlutDen().isAfter(dato) || ordination.getStartDen().isBefore(dato)) {
             throw new IllegalArgumentException();
         }
         if (ordination != null || dato != null) {
             ordination.givDosis(dato);
+        }
+    }
+
+    /**
+     * En hjælpe metode til at se om datoen er efter ordinationsdato
+     */
+    public void isTidAfter(LocalDate date, LocalDate current) {
+        if (date.isAfter(current)) {
+            throw new IllegalArgumentException();
         }
     }
 
