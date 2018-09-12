@@ -67,7 +67,7 @@ public class Controller {
         df.createDosis(Dagstidspunkt.MIDDAG, middagAntal);
         df.createDosis(Dagstidspunkt.AFTEN, aftenAntal);
         df.createDosis(Dagstidspunkt.NAT, natAntal);
-        
+
         patient.addOrdination(df);
 
         return df;
@@ -128,13 +128,15 @@ public class Controller {
      * lægemiddel er ikke null
      */
     public double anbefaletDosisPrDoegn(Patient patient, Laegemiddel laegemiddel) {
-        double result;
-        if (patient.getVaegt() < 25) {
-            result = patient.getVaegt() * laegemiddel.getEnhedPrKgPrDoegnLet();
-        } else if (patient.getVaegt() > 120) {
-            result = patient.getVaegt() * laegemiddel.getEnhedPrKgPrDoegnTung();
-        } else {
-            result = patient.getVaegt() * laegemiddel.getEnhedPrKgPrDoegnNormal();
+        double result = 0.0;
+        if (patient != null || laegemiddel != null) {
+            if (patient.getVaegt() < 25) {
+                result = patient.getVaegt() * laegemiddel.getEnhedPrKgPrDoegnLet();
+            } else if (patient.getVaegt() > 120) {
+                result = patient.getVaegt() * laegemiddel.getEnhedPrKgPrDoegnTung();
+            } else {
+                result = patient.getVaegt() * laegemiddel.getEnhedPrKgPrDoegnNormal();
+            }
         }
         return result;
     }
@@ -154,20 +156,6 @@ public class Controller {
 
     public List<Laegemiddel> getAllLaegemidler() {
         return storage.getAllLaegemidler();
-    }
-
-    /**
-     * Metode der kan bruges til at checke at en startDato ligger før en
-     * slutDato.
-     *
-     * @return true hvis startDato er før slutDato, false ellers.
-     */
-    private boolean checkStartFoerSlut(LocalDate startDato, LocalDate slutDato) {
-        boolean result = true;
-        if (slutDato.compareTo(startDato) < 0) {
-            result = false;
-        }
-        return result;
     }
 
     public Patient opretPatient(String cpr, String navn, double vaegt) {
