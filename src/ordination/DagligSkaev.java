@@ -7,11 +7,11 @@ import java.util.ArrayList;
 
 public class DagligSkaev extends Ordination {
     
+	private ArrayList<Dosis> doser = new ArrayList<>();
+	
 	public DagligSkaev(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
 		super(startDen, slutDen, laegemiddel);
 	}
-
-	private ArrayList<Dosis> doser = new ArrayList<>();
 
     public void opretDosis(LocalTime tid, double antal) {
         addDosis(new Dosis(tid, antal));

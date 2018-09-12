@@ -62,6 +62,7 @@ public class Controller {
         if (startDen == null || slutDen == null || laegemiddel == null) {
             return null;
         }
+        
         df.createDosis(Dagstidspunkt.MORGEN, morgenAntal);
         df.createDosis(Dagstidspunkt.MIDDAG, middagAntal);
         df.createDosis(Dagstidspunkt.AFTEN, aftenAntal);
@@ -85,8 +86,15 @@ public class Controller {
             Laegemiddel laegemiddel, LocalTime[] klokkeSlet, double[] antalEnheder) {
         controller.isTidAfter(startDen, slutDen);
 
-        // TODO
-        return null;
+        DagligSkaev ds = new DagligSkaev(startDen, slutDen, laegemiddel);
+        
+        patient.addOrdination(ds);
+        
+        for (int i = 0; i < klokkeSlet.length; i++) {
+        	ds.opretDosis(klokkeSlet[i], antalEnheder[i]);
+        }
+        
+        return ds;
     }
 
     /**
