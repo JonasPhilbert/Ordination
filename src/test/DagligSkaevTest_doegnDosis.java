@@ -10,7 +10,7 @@ import org.junit.Test;
 import ordination.DagligSkaev;
 import ordination.Laegemiddel;
 
-public class DagligSkaevTest {
+public class DagligSkaevTest_doegnDosis {
     /** Test af metoden doegnDosis() i klassen DagligSkaev */
 
     DagligSkaev ds;

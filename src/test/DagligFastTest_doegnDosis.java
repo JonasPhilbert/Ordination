@@ -11,7 +11,7 @@ import ordination.DagligFast;
 import ordination.Dagstidspunkt;
 import ordination.Laegemiddel;
 
-public class DagligFastTest {
+public class DagligFastTest_doegnDosis {
 
     /** Test af metoden doegnDosis() i klassen DagligFast */
 
@@ -20,7 +20,7 @@ public class DagligFastTest {
     @Before
     public void setUp_doegnDosis() {
         df = new DagligFast(LocalDate.of(2000, 01, 01), LocalDate.of(2000, 01, 06),
-                new Laegemiddel("Ipren", 100, 10, 99, "KG"));
+                new Laegemiddel("Ipren", 100, 10, 99, "Kg"));
     }
 
     @Test
@@ -49,7 +49,4 @@ public class DagligFastTest {
         double resultat = df.doegnDosis();
         assertEquals(40, resultat, 0.01);
     }
-
-    /** Test af metoden samletDosis() i klassen DagligFast */
-
 }
