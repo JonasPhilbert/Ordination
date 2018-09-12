@@ -17,7 +17,7 @@ public class StatistikPane extends GridPane {
     private Controller controller;
 
     public StatistikPane() {
-        controller = Controller.getService();
+        controller = Controller.getController();
         setPadding(new Insets(20));
         setHgap(20);
         setVgap(10);

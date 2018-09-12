@@ -18,7 +18,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() {
-        controller = Controller.getService();
+        controller = Controller.getController();
         controller.createSomeObjects();
     }
 

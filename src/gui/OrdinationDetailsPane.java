@@ -38,7 +38,7 @@ public class OrdinationDetailsPane extends GridPane {
     private Controller controller;
 
     public OrdinationDetailsPane() {
-        controller = Controller.getService();
+        controller = Controller.getController();
         setHgap(20);
         setVgap(10);
         setGridLinesVisible(false);

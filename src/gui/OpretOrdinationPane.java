@@ -29,7 +29,7 @@ public class OpretOrdinationPane extends GridPane {
 
     public OpretOrdinationPane() {
 
-        controller = Controller.getService();
+        controller = Controller.getController();
 
         setPadding(new Insets(20));
         setHgap(20);

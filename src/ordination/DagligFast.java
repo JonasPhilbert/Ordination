@@ -1,7 +1,6 @@
 package ordination;
 
 import java.time.*;
-import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 
 public class DagligFast extends Ordination {

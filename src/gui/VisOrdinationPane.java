@@ -19,7 +19,7 @@ public class VisOrdinationPane extends GridPane {
     private Controller controller;
 
     public VisOrdinationPane() {
-        controller = Controller.getService();
+        controller = Controller.getController();
 
         setPadding(new Insets(20));
         setHgap(20);
