@@ -42,7 +42,7 @@ public class Controller {
             double antal) {
         PN pn = new PN(startDen, slutDen, laegemiddel, antal);
         controller.isTidAfter(startDen, slutDen);
-        if (startDen == null || slutDen == null || laegemiddel == null) {
+        if (startDen == null || slutDen == null || laegemiddel == null || patient == null) {
             return null;
         }
         patient.addOrdination(pn);
@@ -59,7 +59,7 @@ public class Controller {
             Laegemiddel laegemiddel, double morgenAntal, double middagAntal, double aftenAntal, double natAntal) {
         DagligFast df = new DagligFast(startDen, slutDen, laegemiddel);
         controller.isTidAfter(startDen, slutDen);
-        if (startDen == null || slutDen == null || laegemiddel == null) {
+        if (startDen == null || slutDen == null || laegemiddel == null || patient == null) {
             return null;
         }
 
