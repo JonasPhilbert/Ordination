@@ -15,15 +15,16 @@ public class PN extends Ordination {
     }
 
     /**
-     * Registrerer at der er givet en dosis paa dagen givesDen Returnerer true hvis
-     * givesDen er inden for ordinationens gyldighedsperiode og datoen huskes
-     * Retrurner false ellers og datoen givesDen ignoreres
+     * Registrerer at der er givet en dosis paa dagen givesDen Returnerer true
+     * hvis givesDen er inden for ordinationens gyldighedsperiode og datoen
+     * huskes Retrurner false ellers og datoen givesDen ignoreres
      *
      * @param givesDen
      * @return
      */
     public boolean givDosis(LocalDate givesDen) {
-        // Checker om dateon er inden for doserings datoerne, og tilføjer dato for dosis
+        // Checker om dateon er inden for doserings datoerne, og tilføjer dato
+        // for dosis
         // til et ArrayList (doserGivet)
         if (givesDen.isAfter(getStartDen()) && givesDen.isBefore(getSlutDen())) {
             doserGivet.add(givesDen);
@@ -35,7 +36,7 @@ public class PN extends Ordination {
 
     @Override
     public double doegnDosis() {
-        return samletDosis() / ChronoUnit.DAYS.between(getStartDen(), getSlutDen());
+        return samletDosis() / super.antalDage();
     }
 
     @Override
