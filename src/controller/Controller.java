@@ -40,17 +40,18 @@ public class Controller {
      */
     public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
             double antal) {
-    	
-    	// Argument check;
-    	if (startDen == null || slutDen == null || laegemiddel == null || patient == null) {
+        if (controller.checkStartFoerSlut(startDen, slutDen)) {
+            throw new IllegalArgumentException();
+        }
+        // Argument check;
+        if (startDen == null || slutDen == null || laegemiddel == null || patient == null) {
             return null;
         }
-    	
+
         PN pn = new PN(startDen, slutDen, laegemiddel, antal);
-        controller.isTidAfter(startDen, slutDen);
-        
+
         patient.addOrdination(pn);
-        
+
         return pn;
     }
 
@@ -61,8 +62,11 @@ public class Controller {
      */
     public DagligFast opretDagligFastOrdination(LocalDate startDen, LocalDate slutDen, Patient patient,
             Laegemiddel laegemiddel, double morgenAntal, double middagAntal, double aftenAntal, double natAntal) {
+        if (controller.checkStartFoerSlut(startDen, slutDen)) {
+            throw new IllegalArgumentException();
+        }
         DagligFast df = new DagligFast(startDen, slutDen, laegemiddel);
-        controller.isTidAfter(startDen, slutDen);
+
         if (startDen == null || slutDen == null || laegemiddel == null || patient == null) {
             return null;
         }
@@ -88,7 +92,9 @@ public class Controller {
      */
     public DagligSkaev opretDagligSkaevOrdination(LocalDate startDen, LocalDate slutDen, Patient patient,
             Laegemiddel laegemiddel, LocalTime[] klokkeSlet, double[] antalEnheder) {
-        controller.isTidAfter(startDen, slutDen);
+        if (controller.checkStartFoerSlut(startDen, slutDen)) {
+            throw new IllegalArgumentException();
+        }
 
         DagligSkaev ds = new DagligSkaev(startDen, slutDen, laegemiddel);
 
@@ -115,12 +121,17 @@ public class Controller {
     }
 
     /**
-     * En hjælpe metode til at se om datoen er efter ordinationsdato
+     * Metode der kan bruges til at checke at en startDato ligger før en
+     * slutDato.
+     *
+     * @return true hvis startDato er før slutDato, false ellers.
      */
-    public void isTidAfter(LocalDate date, LocalDate current) {
-        if (date.isAfter(current)) {
-            throw new IllegalArgumentException();
+    private boolean checkStartFoerSlut(LocalDate startDato, LocalDate slutDato) {
+        boolean result = true;
+        if (slutDato.compareTo(startDato) < 0) {
+            result = false;
         }
+        return result;
     }
 
     /**
@@ -140,7 +151,7 @@ public class Controller {
                 result = patient.getVaegt() * laegemiddel.getEnhedPrKgPrDoegnNormal();
             }
         }
-        
+
         return result;
     }
 
