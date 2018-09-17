@@ -9,7 +9,7 @@ import controller.Controller;
 import ordination.Laegemiddel;
 import ordination.Patient;
 
-public class ControllerAnbefaldetDosisPrDoegn {
+public class ControllerAnbefaletDosisPrDoegn {
 
 	Controller c;
 	Laegemiddel l;
