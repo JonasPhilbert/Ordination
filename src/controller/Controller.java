@@ -72,9 +72,9 @@ public class Controller {
         if (startDen == null || slutDen == null || laegemiddel == null || patient == null) {
             throw new IllegalArgumentException("NULL argumenter ikke accepteret.");
         }
-        
-        if (morgenAntal <= 0 || middagAntal <= 0 || aftenAntal <= 0 || natAntal <= 0) {
-        	throw new IllegalArgumentException("Ingen antal må være 0 eller under.");
+
+        if (morgenAntal < 0 || middagAntal < 0 || aftenAntal < 0 || natAntal < 0) {
+            throw new IllegalArgumentException("Ingen antal må være 0 eller under.");
         }
 
         df.createDosis(Dagstidspunkt.MORGEN, morgenAntal);
@@ -191,7 +191,7 @@ public class Controller {
     }
 
     public Patient opretPatient(String cpr, String navn, double vaegt) {
-        if (cpr.length() != 10) {
+        if (cpr.length() != 11) {
             throw new IllegalArgumentException("CPR længde er ikke 10");
         } else if (navn == null) {
             throw new IllegalArgumentException("Navn er null");
@@ -236,7 +236,7 @@ public class Controller {
                 storage.getAllLaegemidler().get(1), 123);
 
         opretDagligFastOrdination(LocalDate.of(2015, 1, 10), LocalDate.of(2015, 1, 12),
-                storage.getAllPatienter().get(1), storage.getAllLaegemidler().get(1), 2, -1, 1, -1);
+                storage.getAllPatienter().get(1), storage.getAllLaegemidler().get(1), 2, 0, 1, 0);
 
         LocalTime[] kl = { LocalTime.of(12, 0), LocalTime.of(12, 40), LocalTime.of(16, 0), LocalTime.of(18, 45) };
         double[] an = { 0.5, 1, 2.5, 3 };
