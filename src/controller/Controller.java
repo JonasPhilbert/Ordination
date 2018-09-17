@@ -158,7 +158,7 @@ public class Controller {
      */
     public double anbefaletDosisPrDoegn(Patient patient, Laegemiddel laegemiddel) {
         double result = 0.0;
-        if (patient != null || laegemiddel != null) {
+        if (patient != null && laegemiddel != null) {
             if (patient.getVaegt() < 25) {
                 result = patient.getVaegt() * laegemiddel.getEnhedPrKgPrDoegnLet();
             } else if (patient.getVaegt() > 120) {
@@ -166,6 +166,8 @@ public class Controller {
             } else {
                 result = patient.getVaegt() * laegemiddel.getEnhedPrKgPrDoegnNormal();
             }
+        } else {
+        	throw new IllegalArgumentException("Patient og/el. Laegemiddel må ikke være null.");
         }
 
         return result;
