@@ -17,6 +17,9 @@ public class DagligFast extends Ordination {
 
     // Creates dose;
     public Dosis createDosis(Dagstidspunkt dagstidspunkt, double antal) {
+        if (antal < 0) {
+            throw new IllegalArgumentException();
+        }
         Dosis dosis = new Dosis(antal);
         doser[dagstidspunkt.ordinal()] = dosis;
         return dosis;
