@@ -70,7 +70,7 @@ public class Controller {
         DagligFast df = new DagligFast(startDen, slutDen, laegemiddel);
 
         if (startDen == null || slutDen == null || laegemiddel == null || patient == null) {
-            return null;
+            throw new IllegalArgumentException("NULL argumenter ikke accepteret");
         }
 
         df.createDosis(Dagstidspunkt.MORGEN, morgenAntal);
