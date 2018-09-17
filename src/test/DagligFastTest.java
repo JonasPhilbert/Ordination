@@ -9,11 +9,10 @@ import org.junit.Test;
 
 import ordination.DagligFast;
 import ordination.Dagstidspunkt;
+import ordination.Dosis;
 import ordination.Laegemiddel;
 
 public class DagligFastTest {
-
-    /** Test af metoden doegnDosis() i klassen DagligFast */
 
     DagligFast df;
 
@@ -22,6 +21,31 @@ public class DagligFastTest {
         df = new DagligFast(LocalDate.of(2000, 01, 01), LocalDate.of(2000, 01, 05),
                 new Laegemiddel("Ipren", 100, 10, 99, "Kg"));
     }
+
+    /** Test af metoden createDosis() i klassen DagligFast */
+
+    @Test
+    public void TC1_createDosis() {
+        Dosis dosis = df.createDosis(Dagstidspunkt.MORGEN, 0);
+        Dosis dosisNew = new Dosis(0);
+        assertEquals(dosis.getAntal(), dosisNew.getAntal(), 0.01);
+    }
+
+    @Test
+    public void TC2_createDosis() {
+        Dosis dosis = df.createDosis(Dagstidspunkt.MIDDAG, 10);
+        Dosis dosisNew = new Dosis(10);
+        assertEquals(dosis.getAntal(), dosisNew.getAntal(), 0.01);
+    }
+
+    @Test
+    public void TC3_createDosis() {
+        Dosis dosis = df.createDosis(Dagstidspunkt.AFTEN, -1);
+        Dosis dosisNew = new Dosis(-1);
+        assertEquals(dosis.getAntal(), dosisNew.getAntal(), 0.01);
+    }
+
+    /** Test af metoden doegnDosis() i klassen DagligFast */
 
     @Test
     public void TC1_doegnDosis() {
@@ -49,6 +73,8 @@ public class DagligFastTest {
         double resultat = df.doegnDosis();
         assertEquals(40, resultat, 0.01);
     }
+
+    /** Test af metoden samletDosis() i klassen DagligFast */
 
     @Test
     public void TC1_samletDosis() {
