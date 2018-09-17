@@ -8,6 +8,7 @@ import ordination.DagligFast;
 import ordination.DagligSkaev;
 import ordination.Dagstidspunkt;
 import ordination.Laegemiddel;
+import ordination.Ordination;
 import ordination.PN;
 import ordination.Patient;
 import storage.Storage;
@@ -160,12 +161,20 @@ public class Controller {
      * ordinationer. Pre: laegemiddel er ikke null
      */
     public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart, double vægtSlut, Laegemiddel laegemiddel) {
-        // TODO
+    	int ordinationer = 0;
         if (laegemiddel != null) {
-
+        	for (Patient p : storage.getAllPatienter()) {
+        		if (p.getVaegt() >= vægtStart && p.getVaegt() <= vægtSlut) {
+            		for (Ordination o : p.getOrdinationer()) {
+            			if (o.getLaegemiddel() == laegemiddel) {
+            				ordinationer++;
+            			}
+            		}	
+        		}
+        	}
         }
 
-        return 0;
+        return ordinationer;
     }
 
     public List<Patient> getAllPatienter() {
