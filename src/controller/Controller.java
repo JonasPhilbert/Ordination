@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import javafx.beans.binding.IntegerExpression;
 import ordination.DagligFast;
 import ordination.DagligSkaev;
 import ordination.Dagstidspunkt;
