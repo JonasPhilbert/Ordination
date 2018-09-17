@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import ordination.Dosis;
 
-public class DosisTest_get_setTid {
+public class DosisTest {
 
     /** Test af metoden getTid() i klassen Dosis */
 
