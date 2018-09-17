@@ -38,7 +38,7 @@ public class OrdinationPNAnventTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void TC3_ordinationPNAnvendt() {
-        controller.ordinationPNAnvendt(pn, LocalDate.of(2000, 01, 05));
+        controller.ordinationPNAnvendt(null, LocalDate.of(2000, 01, 05));
     }
 
 }

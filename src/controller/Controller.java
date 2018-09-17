@@ -46,7 +46,7 @@ public class Controller {
         }
 
         if (controller.checkStartFoerSlut(startDen, slutDen)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Start dato er efter slut dato");
         }
 
         PN pn = new PN(startDen, slutDen, laegemiddel, antal);
@@ -64,7 +64,7 @@ public class Controller {
     public DagligFast opretDagligFastOrdination(LocalDate startDen, LocalDate slutDen, Patient patient,
             Laegemiddel laegemiddel, double morgenAntal, double middagAntal, double aftenAntal, double natAntal) {
         if (controller.checkStartFoerSlut(startDen, slutDen)) {
-            throw new IllegalArgumentException("startDen skal være før slutDen");
+            throw new IllegalArgumentException("Start dato er efter slut dato");
         }
         DagligFast df = new DagligFast(startDen, slutDen, laegemiddel);
 
@@ -102,7 +102,7 @@ public class Controller {
         }
 
         if (controller.checkStartFoerSlut(startDen, slutDen)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Start dato er efter slut dato");
         }
 
         if (klokkeSlet.length != antalEnheder.length) {
@@ -126,10 +126,10 @@ public class Controller {
 
     public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
         if (ordination == null) {
-            throw new NullPointerException("Ordination er null");
+            throw new IllegalArgumentException("Ordination er null");
         }
         if (dato.isBefore(ordination.getStartDen()) || dato.isAfter(ordination.getSlutDen())) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("datoen er uden for Ordinations dato interval");
         }
 
         ordination.givDosis(dato);
@@ -167,7 +167,7 @@ public class Controller {
                 result = patient.getVaegt() * laegemiddel.getEnhedPrKgPrDoegnNormal();
             }
         } else {
-        	throw new IllegalArgumentException("Patient og/el. Laegemiddel må ikke være null.");
+            throw new IllegalArgumentException("Patient og/el. Laegemiddel må ikke være null.");
         }
 
         return result;
@@ -206,7 +206,7 @@ public class Controller {
         if (cpr.length() != 11) {
             throw new IllegalArgumentException("CPR længde er ikke 10");
         } else if (navn == null) {
-            throw new NullPointerException("Navn er null");
+            throw new IllegalArgumentException("Navn er null");
         } else if (vaegt < 0) {
             throw new IllegalArgumentException("vægt er mindre end 0");
         }
