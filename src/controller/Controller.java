@@ -193,7 +193,7 @@ public class Controller {
         if (cpr.length() != 11) {
             throw new IllegalArgumentException("CPR længde er ikke 10");
         } else if (navn == null) {
-            throw new IllegalArgumentException("Navn er null");
+            throw new NullPointerException("Navn er null");
         } else if (vaegt < 0) {
             throw new IllegalArgumentException("vægt er mindre end 0");
         }
