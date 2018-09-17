@@ -217,6 +217,14 @@ public class Controller {
 
     public Laegemiddel opretLaegemiddel(String navn, double enhedPrKgPrDoegnLet, double enhedPrKgPrDoegnNormal,
             double enhedPrKgPrDoegnTung, String enhed) {
+    	if (enhedPrKgPrDoegnLet <= 0 || enhedPrKgPrDoegnNormal <= 0 || enhedPrKgPrDoegnTung <= 0) {
+    		throw new IllegalArgumentException("Ingen enheds-vægt-intervaller må være 0 eller mindre.");
+    	}
+    	
+    	if (navn.isEmpty() || enhed.isEmpty()) {
+    		throw new IllegalArgumentException("Navn og/el. Enhed må ikke være tomme strenge.");
+    	}
+    	
         Laegemiddel lm = new Laegemiddel(navn, enhedPrKgPrDoegnLet, enhedPrKgPrDoegnNormal, enhedPrKgPrDoegnTung,
                 enhed);
         storage.addLaegemiddel(lm);
