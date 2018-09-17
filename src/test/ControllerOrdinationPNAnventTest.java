@@ -11,7 +11,7 @@ import controller.Controller;
 import ordination.Laegemiddel;
 import ordination.PN;
 
-public class OrdinationPNAnventTest {
+public class ControllerOrdinationPNAnventTest {
 
     Laegemiddel lm;
     Controller controller;
