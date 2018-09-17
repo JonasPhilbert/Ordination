@@ -100,9 +100,9 @@ public class Controller {
         if (controller.checkStartFoerSlut(startDen, slutDen)) {
             throw new IllegalArgumentException();
         }
-        
+
         if (klokkeSlet.length != antalEnheder.length) {
-        	throw new IllegalArgumentException("Klokkeslet og AntalEnheder arrays skal have samme længde.");
+            throw new IllegalArgumentException("Klokkeslet og AntalEnheder arrays skal have samme længde.");
         }
 
         DagligSkaev ds = new DagligSkaev(startDen, slutDen, laegemiddel);
@@ -121,7 +121,7 @@ public class Controller {
      */
 
     public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
-        if (ordination.getSlutDen().isAfter(dato) || ordination.getStartDen().isBefore(dato)) {
+        if (dato.isBefore(ordination.getStartDen()) || dato.isAfter(ordination.getSlutDen())) {
             throw new IllegalArgumentException();
         }
         if (ordination != null || dato != null) {
