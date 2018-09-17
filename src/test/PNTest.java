@@ -120,5 +120,7 @@ public class PNTest {
 		pn.givDosis(LocalDate.of(2000, 01, 03));
 		assertEquals(2d, pn.doegnDosis(), 0.001d);
 	}
+	
+	
 
 }
