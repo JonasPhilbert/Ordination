@@ -45,7 +45,7 @@ public class Controller {
         if (startDen == null || slutDen == null || laegemiddel == null || patient == null) {
             throw new IllegalArgumentException("No null arguments accepted.");
         }
-    	
+
         if (controller.checkStartFoerSlut(startDen, slutDen)) {
             throw new IllegalArgumentException();
         }
@@ -189,7 +189,7 @@ public class Controller {
     public Patient opretPatient(String cpr, String navn, double vaegt) {
         if (cpr.length() != 10) {
             throw new IllegalArgumentException("CPR længde er ikke 10");
-        } else if (navn != null) {
+        } else if (navn == null) {
             throw new IllegalArgumentException("Navn er null");
         } else if (vaegt < 0) {
             throw new IllegalArgumentException("vægt er mindre end 0");

@@ -9,7 +9,7 @@ import org.junit.Test;
 import controller.Controller;
 import ordination.Patient;
 
-public class Controller_opretPatient {
+public class Controller_opretPatientTest {
 
     Controller controller;
 
