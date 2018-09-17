@@ -29,7 +29,11 @@ public abstract class Ordination {
      * @return antal dage ordinationen gælder for
      */
     public int antalDage() {
-        return (int) ChronoUnit.DAYS.between(startDen, slutDen) + 1;
+        int antal = (int) ChronoUnit.DAYS.between(startDen, slutDen) + 1;
+        if (antal < 0) {
+            throw new DateTimeException("Start Dato er efter Slut Dato");
+        }
+        return antal;
     }
 
     @Override
