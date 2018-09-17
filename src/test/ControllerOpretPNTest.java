@@ -42,7 +42,7 @@ public class ControllerOpretPNTest {
 	
 	@Test
 	public void opretPNOrdinationTC2() {
-		LocalDate slutDen = LocalDate.of(2000, 01, 05);
+		LocalDate slutDen = LocalDate.of(2000, 01, 01);
 		PN pn = c.opretPNOrdination(startDen, slutDen, p, l, 0);
 		assertNotNull(pn);
 		assertEquals(startDen, pn.getStartDen());

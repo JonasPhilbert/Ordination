@@ -15,7 +15,7 @@ import storage.Storage;
 
 public class Controller {
     private Storage storage;
-    private static Controller controller;
+    private static Controller controller; 
 
     private Controller() {
         storage = new Storage();
