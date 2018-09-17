@@ -12,9 +12,14 @@ public class DagligSkaev extends Ordination {
         super(startDen, slutDen, laegemiddel);
     }
 
-    public void opretDosis(LocalTime tid, double antal) {
-        addDosis(new Dosis(tid, antal));
-    }
+	public void opretDosis(LocalTime tid, double antal) {
+
+		if (antal <= 0) {
+			throw new IllegalArgumentException();
+		} else {
+			addDosis(new Dosis(tid, antal));
+		}
+	}
 
     public void addDosis(Dosis dosis) {
         doser.add(dosis);

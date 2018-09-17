@@ -105,13 +105,22 @@ public class DagligSkaevTest {
     	assertEquals(100, d.getAntal(), 0.01);
     }
     
-    @Test 
+    @Test (expected = IllegalArgumentException.class)
     public void TC4_opretDosis() {
     	ds.opretDosis(LocalTime.of(13, 00), 0);
     	Dosis d = ds.getDoser().get(0);
     	assertNotNull(d);
     	assertEquals(LocalTime.of(13, 00), d.getTid());
+    	assertEquals(0, d.getAntal(), 0.01);
+    }
     
+    @Test (expected = IllegalArgumentException.class)
+    public void TC5_opretDosis() {
+    	ds.opretDosis(LocalTime.of(11, 00), -1);
+    	Dosis d = ds.getDoser().get(0);
+    	assertNotNull(d);
+    	assertEquals(LocalTime.of(13, 00), d.getTid());
+    	assertEquals(-1, d.getAntal(), 0.01);
     }
     
     
