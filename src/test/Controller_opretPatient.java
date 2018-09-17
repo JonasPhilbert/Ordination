@@ -20,7 +20,7 @@ public class Controller_opretPatient {
 
     @Test
     public void TC1_opretPatient() {
-        Patient p = controller.opretPatient("Hans Hansen", "1234567890", 65);
+        Patient p = controller.opretPatient("1234567890", "Hans Hansen", 65);
 
         assertNotNull(p);
         assertEquals("Hans Hansen", p.getNavn());
@@ -28,10 +28,24 @@ public class Controller_opretPatient {
         assertEquals(65, p.getVaegt(), 0.01);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void TC2_opretPatient() {
-        Patient p = controller.opretPatient("Hans Hansen", "1234567890", -20);
+        Patient p = controller.opretPatient("1234567890", "Hans Hansen", -20);
 
-        p.getVaegt();
+        assertEquals(-20, p.getVaegt(), 0.01);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void TC3_opretPatient() {
+        Patient p = controller.opretPatient("123456", "Hans Hansen", 65);
+
+        assertEquals(10, p.getCprnr().length());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void TC4_opretPatient() {
+        Patient p = controller.opretPatient("1234567890", null, 65);
+
+        assertEquals("Hans Hansen", p.getNavn());
     }
 }

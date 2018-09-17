@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import javafx.beans.binding.IntegerExpression;
 import ordination.DagligFast;
 import ordination.DagligSkaev;
 import ordination.Dagstidspunkt;
@@ -161,17 +162,17 @@ public class Controller {
      * ordinationer. Pre: laegemiddel er ikke null
      */
     public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart, double vægtSlut, Laegemiddel laegemiddel) {
-    	int ordinationer = 0;
+        int ordinationer = 0;
         if (laegemiddel != null) {
-        	for (Patient p : storage.getAllPatienter()) {
-        		if (p.getVaegt() >= vægtStart && p.getVaegt() <= vægtSlut) {
-            		for (Ordination o : p.getOrdinationer()) {
-            			if (o.getLaegemiddel() == laegemiddel) {
-            				ordinationer++;
-            			}
-            		}	
-        		}
-        	}
+            for (Patient p : storage.getAllPatienter()) {
+                if (p.getVaegt() >= vægtStart && p.getVaegt() <= vægtSlut) {
+                    for (Ordination o : p.getOrdinationer()) {
+                        if (o.getLaegemiddel() == laegemiddel) {
+                            ordinationer++;
+                        }
+                    }
+                }
+            }
         }
 
         return ordinationer;
@@ -186,6 +187,13 @@ public class Controller {
     }
 
     public Patient opretPatient(String cpr, String navn, double vaegt) {
+        if (cpr.length() != 10) {
+            throw new IllegalArgumentException("CPR længde er ikke 10");
+        } else if (navn != null) {
+            throw new IllegalArgumentException("Navn er null");
+        } else if (vaegt < 0) {
+            throw new IllegalArgumentException("vægt er mindre end 0");
+        }
         Patient p = new Patient(cpr, navn, vaegt);
         storage.addPatient(p);
         return p;
