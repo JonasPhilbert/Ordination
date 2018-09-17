@@ -45,7 +45,7 @@ public class Controller {
         if (startDen == null || slutDen == null || laegemiddel == null || patient == null) {
             throw new IllegalArgumentException("No null arguments accepted.");
         }
-    	
+
         if (controller.checkStartFoerSlut(startDen, slutDen)) {
             throw new IllegalArgumentException();
         }
@@ -65,12 +65,16 @@ public class Controller {
     public DagligFast opretDagligFastOrdination(LocalDate startDen, LocalDate slutDen, Patient patient,
             Laegemiddel laegemiddel, double morgenAntal, double middagAntal, double aftenAntal, double natAntal) {
         if (controller.checkStartFoerSlut(startDen, slutDen)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("startDen skal være før slutDen");
         }
         DagligFast df = new DagligFast(startDen, slutDen, laegemiddel);
 
         if (startDen == null || slutDen == null || laegemiddel == null || patient == null) {
-            throw new IllegalArgumentException("NULL argumenter ikke accepteret");
+            throw new IllegalArgumentException("NULL argumenter ikke accepteret.");
+        }
+        
+        if (morgenAntal <= 0 || middagAntal <= 0 || aftenAntal <= 0 || natAntal <= 0) {
+        	throw new IllegalArgumentException("Ingen antal må være 0 eller under.");
         }
 
         df.createDosis(Dagstidspunkt.MORGEN, morgenAntal);
@@ -189,7 +193,7 @@ public class Controller {
     public Patient opretPatient(String cpr, String navn, double vaegt) {
         if (cpr.length() != 10) {
             throw new IllegalArgumentException("CPR længde er ikke 10");
-        } else if (navn != null) {
+        } else if (navn == null) {
             throw new IllegalArgumentException("Navn er null");
         } else if (vaegt < 0) {
             throw new IllegalArgumentException("vægt er mindre end 0");
