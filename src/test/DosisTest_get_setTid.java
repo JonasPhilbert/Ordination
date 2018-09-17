@@ -8,7 +8,15 @@ import org.junit.Test;
 
 import ordination.Dosis;
 
-public class DosisTest_setTid {
+public class DosisTest_get_setTid {
+
+    /** Test af metoden getTid() i klassen Dosis */
+
+    @Test
+    public void TC1_getTid() {
+        Dosis d = new Dosis(LocalTime.of(00, 00), 0);
+        assertEquals(LocalTime.of(00, 00), d.getTid());
+    }
 
     /** Test af metoden setTid() i klassen Dosis */
 

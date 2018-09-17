@@ -11,7 +11,7 @@ import ordination.DagligFast;
 import ordination.Dagstidspunkt;
 import ordination.Laegemiddel;
 
-public class DagligFastTest_doegnDosis {
+public class DagligFastTest {
 
     /** Test af metoden doegnDosis() i klassen DagligFast */
 
@@ -19,7 +19,7 @@ public class DagligFastTest_doegnDosis {
 
     @Before
     public void setUp_doegnDosis() {
-        df = new DagligFast(LocalDate.of(2000, 01, 01), LocalDate.of(2000, 01, 06),
+        df = new DagligFast(LocalDate.of(2000, 01, 01), LocalDate.of(2000, 01, 05),
                 new Laegemiddel("Ipren", 100, 10, 99, "Kg"));
     }
 
@@ -48,5 +48,32 @@ public class DagligFastTest_doegnDosis {
         df.createDosis(Dagstidspunkt.MORGEN, 40);
         double resultat = df.doegnDosis();
         assertEquals(40, resultat, 0.01);
+    }
+
+    @Test
+    public void TC1_samletDosis() {
+        assertEquals(0, df.samletDosis(), 0.01);
+    }
+
+    @Test
+    public void TC2_samletDosis() {
+        df.createDosis(Dagstidspunkt.MORGEN, 10);
+        assertEquals(50, df.samletDosis(), 0.01);
+    }
+
+    @Test
+    public void TC3_samletDosis() {
+        df.createDosis(Dagstidspunkt.MORGEN, 10);
+        df.createDosis(Dagstidspunkt.MIDDAG, 10);
+        assertEquals(100, df.samletDosis(), 0.01);
+    }
+
+    @Test
+    public void TC4_samletDosis() {
+        df.createDosis(Dagstidspunkt.MORGEN, 10);
+        df.createDosis(Dagstidspunkt.MIDDAG, 10);
+        df.createDosis(Dagstidspunkt.AFTEN, 10);
+        df.createDosis(Dagstidspunkt.NAT, 10);
+        assertEquals(200, df.samletDosis(), 0.01);
     }
 }
