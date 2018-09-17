@@ -97,10 +97,10 @@ public class Controller {
      */
     public DagligSkaev opretDagligSkaevOrdination(LocalDate startDen, LocalDate slutDen, Patient patient,
             Laegemiddel laegemiddel, LocalTime[] klokkeSlet, double[] antalEnheder) {
-    	if (startDen == null || slutDen == null || patient == null || laegemiddel == null) {
-    		throw new IllegalArgumentException("Accepterer ikke NULL argumenter.");
-    	}
-    	
+        if (startDen == null || slutDen == null || patient == null || laegemiddel == null) {
+            throw new IllegalArgumentException("Accepterer ikke NULL argumenter.");
+        }
+
         if (controller.checkStartFoerSlut(startDen, slutDen)) {
             throw new IllegalArgumentException();
         }
@@ -125,12 +125,15 @@ public class Controller {
      */
 
     public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
+        if (ordination == null) {
+            throw new NullPointerException("Ordination er null");
+        }
         if (dato.isBefore(ordination.getStartDen()) || dato.isAfter(ordination.getSlutDen())) {
             throw new IllegalArgumentException();
         }
-        if (ordination != null || dato != null) {
-            ordination.givDosis(dato);
-        }
+
+        ordination.givDosis(dato);
+
     }
 
     /**
