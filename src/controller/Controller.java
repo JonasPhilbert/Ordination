@@ -15,7 +15,7 @@ import storage.Storage;
 
 public class Controller {
     private Storage storage;
-    private static Controller controller; 
+    private static Controller controller;
 
     private Controller() {
         storage = new Storage();
@@ -41,12 +41,12 @@ public class Controller {
      */
     public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
             double antal) {
+        if (startDen == null || slutDen == null || laegemiddel == null || patient == null) {
+            throw new IllegalArgumentException("No null arguments accepted.");
+        }
+    	
         if (controller.checkStartFoerSlut(startDen, slutDen)) {
             throw new IllegalArgumentException();
-        }
-        // Argument check;
-        if (startDen == null || slutDen == null || laegemiddel == null || patient == null) {
-            return null;
         }
 
         PN pn = new PN(startDen, slutDen, laegemiddel, antal);
