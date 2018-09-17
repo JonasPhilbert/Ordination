@@ -129,7 +129,7 @@ public class Controller {
      */
     private boolean checkStartFoerSlut(LocalDate startDato, LocalDate slutDato) {
         boolean result = true;
-        if (slutDato.compareTo(startDato) < 0) {
+        if (slutDato.compareTo(startDato) > 0) {
             result = false;
         }
         return result;
