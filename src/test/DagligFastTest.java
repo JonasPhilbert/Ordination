@@ -38,7 +38,7 @@ public class DagligFastTest {
         assertEquals(dosis.getAntal(), dosisNew.getAntal(), 0.01);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void TC3_createDosis() {
         Dosis dosis = df.createDosis(Dagstidspunkt.AFTEN, -1);
         Dosis dosisNew = new Dosis(-1);
