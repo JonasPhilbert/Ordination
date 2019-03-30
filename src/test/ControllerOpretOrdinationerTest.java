@@ -45,6 +45,8 @@ public class ControllerOpretOrdinationerTest {
 		assertEquals(0, pn.getAntalEnheder(), 0.001d);
 	}
 	
+	
+	
 	@Test(expected = IllegalArgumentException.class)
 	public void opretPNOrdinationTC2() {
 		LocalDate slutDen = LocalDate.of(2000, 01, 01);
